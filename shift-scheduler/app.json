@@ -15,29 +15,36 @@
     },
     "ios": {
       "supportsTablet": true
-          },
-      "android": {
-        "package": "com.example.shiftscheduler",
-        "permissions": [
-          "VIBRATE",
-          "WAKE_LOCK",
-          "SCHEDULE_EXACT_ALARM",
-          "RECEIVE_BOOT_COMPLETED"
-        ]
-      },
-      "plugins": [
-        [
-          "expo-notifications",
-          {
-            "androidMode": "default",
-            "icon": "./assets/notification-icon.png",
-            "color": "#6750A4"
-          }
-        ],
-        "expo-router"
+    },
+    "android": {
+      "package": "com.example.shiftscheduler",
+      "permissions": [
+        "VIBRATE",
+        "WAKE_LOCK",
+        "SCHEDULE_EXACT_ALARM",
+        "RECEIVE_BOOT_COMPLETED"
+      ]
+    },
+    "plugins": [
+      [
+        "expo-notifications",
+        {
+          "androidMode": "default",
+          "icon": "./assets/notification-icon.png",
+          "color": "#6750A4"
+        }
       ],
-      "web": {
+      "expo-router"
+    ],
+    "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "918b39fb-e366-4618-9823-26f58f430658"
+      }
+    },
+    "owner": "maxsur"
   }
 }
