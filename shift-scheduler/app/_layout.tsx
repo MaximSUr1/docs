@@ -17,13 +17,19 @@ const theme = {
 export default function RootLayout() {
   useEffect(() => {
     if (Platform.OS === "android") {
-      Notifications.setNotificationChannelAsync("shift-alarms", {
-        name: "Shift Alarms",
-        importance: Notifications.AndroidImportance.HIGH,
-        sound: "default",
-        vibrationPattern: [250, 250, 500, 250],
-        lockscreenVisibility: Notifications.AndroidNotificationVisibility.PUBLIC,
-      });
+      (async () => {
+        try {
+          await Notifications.setNotificationChannelAsync("shift-alarms", {
+            name: "Shift Alarms",
+            importance: Notifications.AndroidImportance.HIGH,
+            sound: "default",
+            vibrationPattern: [250, 250, 500, 250],
+            lockscreenVisibility: Notifications.AndroidNotificationVisibility.PUBLIC,
+          });
+        } catch (e) {
+          // channel setup failed; continue without blocking app start
+        }
+      })();
     }
   }, []);
 

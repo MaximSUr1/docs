@@ -16,26 +16,25 @@
     "ios": {
       "supportsTablet": true
     },
-    "android": {
-      "package": "com.example.shiftscheduler",
-      "permissions": [
-        "VIBRATE",
-        "WAKE_LOCK",
-        "SCHEDULE_EXACT_ALARM",
-        "RECEIVE_BOOT_COMPLETED"
-      ]
-    },
-    "plugins": [
-      [
-        "expo-notifications",
-        {
-          "androidMode": "default",
-          "icon": "./assets/notification-icon.png",
-          "color": "#6750A4"
-        }
+      "android": {
+        "package": "com.example.shiftscheduler",
+        "permissions": [
+          "VIBRATE",
+          "WAKE_LOCK",
+          "SCHEDULE_EXACT_ALARM",
+          "RECEIVE_BOOT_COMPLETED",
+          "POST_NOTIFICATIONS"
+        ]
+      },
+          "plugins": [
+        [
+          "expo-notifications",
+          {
+            "androidMode": "default"
+          }
+        ],
+        "expo-router"
       ],
-      "expo-router"
-    ],
     "web": {
       "favicon": "./assets/favicon.png"
     },
