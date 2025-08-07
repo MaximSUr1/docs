@@ -1,0 +1,43 @@
+{
+  "expo": {
+    "name": "Shift Scheduler",
+    "slug": "shift-scheduler",
+    "scheme": "shifts",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0E1116"
+    },
+    "ios": {
+      "supportsTablet": true
+          },
+      "android": {
+        "package": "com.example.shiftscheduler",
+        "permissions": [
+          "VIBRATE",
+          "WAKE_LOCK",
+          "SCHEDULE_EXACT_ALARM",
+          "RECEIVE_BOOT_COMPLETED"
+        ]
+      },
+      "plugins": [
+        [
+          "expo-notifications",
+          {
+            "androidMode": "default",
+            "icon": "./assets/notification-icon.png",
+            "color": "#6750A4"
+          }
+        ],
+        "expo-router"
+      ],
+      "web": {
+      "favicon": "./assets/favicon.png"
+    }
+  }
+}
