@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { View, ScrollView } from "react-native";
 import { FAB, Appbar } from "react-native-paper";
-import { useRouter } from "expo-router";
+import { useRouter, useFocusEffect } from "expo-router";
 import WeekStrip, { getISO } from "../components/WeekStrip";
 import ShiftCard from "../components/ShiftCard";
 import EmptyState from "../components/EmptyState";
@@ -12,14 +12,20 @@ export default function HomeScreen() {
   const [selectedISO, setSelectedISO] = useState<string>(getISO(new Date()));
   const [shifts, setShifts] = useState<Shift[]>([]);
 
+  const refresh = useCallback(async () => {
+    setShifts(await loadShifts());
+  }, []);
+
   useEffect(() => {
-    const load = async () => {
-      setShifts(await loadShifts());
-    };
-    const unsub = router.addListener("focus", load);
-    load();
-    return () => unsub();
-  }, [router]);
+    refresh();
+  }, [refresh]);
+
+  useFocusEffect(
+    useCallback(() => {
+      refresh();
+      return () => {};
+    }, [refresh])
+  );
 
   const todays = shifts.filter((s) => isSameDate(s.dateISO, selectedISO));
 

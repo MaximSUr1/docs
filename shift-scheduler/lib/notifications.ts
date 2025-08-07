@@ -5,6 +5,8 @@ Notifications.setNotificationHandler({
     shouldShowAlert: true,
     shouldPlaySound: true,
     shouldSetBadge: false,
+    shouldShowBanner: true,
+    shouldShowList: true,
   }),
 });
 
@@ -14,7 +16,7 @@ export async function ensureNotificationPermission(): Promise<boolean> {
     return true;
   }
   const req = await Notifications.requestPermissionsAsync();
-  return req.granted || (req.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL ?? false);
+  return !!(req.granted || req.ios?.status === Notifications.IosAuthorizationStatus.PROVISIONAL);
 }
 
 export async function scheduleShiftAlarm(options: {
@@ -27,7 +29,7 @@ export async function scheduleShiftAlarm(options: {
   const { dateISO, startTime, alarmMinutesBefore, title, id } = options;
   const [year, month, day] = dateISO.split("-").map((x) => Number(x));
   const [hours, minutes] = startTime.split(":").map((x) => Number(x));
-  const start = new Date(year, (month - 1), day, hours, minutes, 0);
+  const start = new Date(year, month - 1, day, hours, minutes, 0);
   const fireAt = new Date(start.getTime() - alarmMinutesBefore * 60_000);
 
   if (fireAt.getTime() <= Date.now()) return null;
